@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -22,10 +23,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
         // TODO 1: Tambahkan kolom 'role' pada properti $fillable
     ];
 
     // TODO 1: Tambahkan method relasi peminjaman() (One-to-Many ke model Peminjaman)
+    public function peminjaman(): HasMany
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
 
 
     /**
